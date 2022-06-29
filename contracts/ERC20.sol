@@ -5,7 +5,7 @@ contract ERC20 {
     string public name;
     string public symbol;
     uint8 public decimals = 18;
-    uint256 public totalsupply;
+    uint256 public totalSupply;
 
     mapping(address => uint256) private balances;
     mapping(address => mapping(address => uint256)) private allownances;
@@ -24,8 +24,9 @@ contract ERC20 {
     ) {
         name = _name;
         symbol = _symbol;
-        totalsupply = _totalSupply;
-        balances[msg.sender] = totalsupply;
+        totalSupply = _totalSupply;
+        balances[msg.sender] = totalSupply;
+        emit Transfer(address(0), msg.sender, totalSupply);
     }
 
     function balanceOf(address _owner) external view returns (uint256) {
